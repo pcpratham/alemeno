@@ -1,0 +1,185 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "name": "Introduction to Programming",
+        "instructor": "John Doe",
+        "description": "Learn the basics of programming using Python.",
+        "status": "Open",
+        "duration": "10 weeks",
+        "schedule": "Mon, Wed, Fri - 10:00 AM to 12:00 PM",
+        "location": "Online",
+        "prerequisites": "None",
+        "syllabus": "Week 1: Introduction, Week 2: Variables, Week 3: Control Structures..."
+      },
+      {
+        "id": 2,
+        "name": "Advanced JavaScript",
+        "instructor": "Jane Smith",
+        "description": "Dive deep into JavaScript and its advanced concepts.",
+        "status": "In Progress",
+        "duration": "8 weeks",
+        "schedule": "Tue, Thu - 2:00 PM to 4:00 PM",
+        "location": "Room 204",
+        "prerequisites": "Basic JavaScript",
+        "syllabus": "Week 1: ES6 Basics, Week 2: Promises, Week 3: Async/Await..."
+      },
+      {
+        "id": 3,
+        "name": "Data Structures and Algorithms",
+        "instructor": "Michael Johnson",
+        "description": "Master data structures and algorithms to improve your problem-solving skills.",
+        "status": "Open",
+        "duration": "12 weeks",
+        "schedule": "Mon, Wed - 3:00 PM to 5:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic programming knowledge",
+        "syllabus": "Week 1: Arrays, Week 2: Linked Lists, Week 3: Stacks and Queues..."
+      },
+      {
+        "id": 4,
+        "name": "Introduction to Databases",
+        "instructor": "Emily Davis",
+        "description": "Learn the fundamentals of relational databases and SQL.",
+        "status": "Closed",
+        "duration": "6 weeks",
+        "schedule": "Tue, Thu - 9:00 AM to 11:00 AM",
+        "location": "Room 305",
+        "prerequisites": "None",
+        "syllabus": "Week 1: Database Concepts, Week 2: SQL Basics, Week 3: Advanced SQL..."
+      },
+      {
+        "id": 5,
+        "name": "Web Development with React",
+        "instructor": "David Williams",
+        "description": "Build dynamic and responsive web applications using React.",
+        "status": "Open",
+        "duration": "10 weeks",
+        "schedule": "Mon, Wed, Fri - 1:00 PM to 3:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic JavaScript",
+        "syllabus": "Week 1: React Basics, Week 2: Components, Week 3: State and Props..."
+      },
+      {
+        "id": 6,
+        "name": "Machine Learning Fundamentals",
+        "instructor": "Sophia Brown",
+        "description": "Get introduced to the core concepts of machine learning.",
+        "status": "In Progress",
+        "duration": "8 weeks",
+        "schedule": "Mon, Wed - 4:00 PM to 6:00 PM",
+        "location": "Room 402",
+        "prerequisites": "Linear Algebra, Basic Python",
+        "syllabus": "Week 1: Introduction to ML, Week 2: Supervised Learning, Week 3: Unsupervised Learning..."
+      },
+      {
+        "id": 7,
+        "name": "Cloud Computing with AWS",
+        "instructor": "James Wilson",
+        "description": "Learn how to design and deploy applications on Amazon Web Services (AWS).",
+        "status": "Open",
+        "duration": "10 weeks",
+        "schedule": "Tue, Thu - 10:00 AM to 12:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic networking and Linux knowledge",
+        "syllabus": "Week 1: Introduction to Cloud, Week 2: AWS Basics, Week 3: AWS EC2..."
+      },
+      {
+        "id": 8,
+        "name": "Cybersecurity Essentials",
+        "instructor": "Olivia Martinez",
+        "description": "Understand the key principles and practices of cybersecurity.",
+        "status": "In Progress",
+        "duration": "7 weeks",
+        "schedule": "Wed, Fri - 11:00 AM to 1:00 PM",
+        "location": "Room 210",
+        "prerequisites": "Basic IT knowledge",
+        "syllabus": "Week 1: Security Fundamentals, Week 2: Threats and Vulnerabilities, Week 3: Network Security..."
+      },
+      {
+        "id": 9,
+        "name": "Introduction to Artificial Intelligence",
+        "instructor": "William Taylor",
+        "description": "Explore the basics of artificial intelligence and its applications.",
+        "status": "Closed",
+        "duration": "9 weeks",
+        "schedule": "Mon, Wed, Fri - 2:00 PM to 4:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic programming knowledge",
+        "syllabus": "Week 1: AI Concepts, Week 2: Search Algorithms, Week 3: Neural Networks..."
+      },
+      {
+        "id": 10,
+        "name": "Front-End Development with HTML, CSS, and JavaScript",
+        "instructor": "Mia Anderson",
+        "description": "Learn to create beautiful and responsive web pages using HTML, CSS, and JavaScript.",
+        "status": "Open",
+        "duration": "8 weeks",
+        "schedule": "Tue, Thu - 4:00 PM to 6:00 PM",
+        "location": "Room 303",
+        "prerequisites": "None",
+        "syllabus": "Week 1: HTML Basics, Week 2: CSS Fundamentals, Week 3: JavaScript Essentials..."
+      },
+      {
+        "id": 11,
+        "name": "Backend Development with Node.js",
+        "instructor": "Noah Garcia",
+        "description": "Learn how to build scalable backend applications using Node.js and Express.",
+        "status": "Open",
+        "duration": "10 weeks",
+        "schedule": "Mon, Wed - 5:00 PM to 7:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic JavaScript knowledge",
+        "syllabus": "Week 1: Node.js Basics, Week 2: Express.js, Week 3: REST APIs..."
+      },
+      {
+        "id": 12,
+        "name": "DevOps: CI/CD with Jenkins and Docker",
+        "instructor": "Liam Thomas",
+        "description": "Master the practices of Continuous Integration and Continuous Deployment using Jenkins and Docker.",
+        "status": "In Progress",
+        "duration": "6 weeks",
+        "schedule": "Tue, Thu - 1:00 PM to 3:00 PM",
+        "location": "Room 501",
+        "prerequisites": "Basic knowledge of software development",
+        "syllabus": "Week 1: DevOps Basics, Week 2: Jenkins Setup, Week 3: Docker Integration..."
+      },
+      {
+        "id": 13,
+        "name": "Mobile App Development with React Native",
+        "instructor": "Ava White",
+        "description": "Build cross-platform mobile applications using React Native.",
+        "status": "Open",
+        "duration": "10 weeks",
+        "schedule": "Mon, Wed, Fri - 3:00 PM to 5:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic JavaScript knowledge",
+        "syllabus": "Week 1: React Native Setup, Week 2: Components, Week 3: Navigation..."
+      },
+      {
+        "id": 14,
+        "name": "Introduction to Blockchain",
+        "instructor": "Elijah Harris",
+        "description": "Understand the fundamentals of blockchain technology and its applications.",
+        "status": "Open",
+        "duration": "7 weeks",
+        "schedule": "Wed, Fri - 10:00 AM to 12:00 PM",
+        "location": "Room 408",
+        "prerequisites": "Basic understanding of computer networks",
+        "syllabus": "Week 1: Blockchain Basics, Week 2: Cryptography, Week 3: Smart Contracts..."
+      },
+      {
+        "id": 15,
+        "name": "Introduction to Data Science with Python",
+        "instructor": "Amelia Clark",
+        "description": "Learn how to analyze data and build data models using Python.",
+        "status": "In Progress",
+        "duration": "9 weeks",
+        "schedule": "Mon, Wed - 10:00 AM to 12:00 PM",
+        "location": "Online",
+        "prerequisites": "Basic programming knowledge",
+        "syllabus": "Week 1: Data Analysis with Pandas, Week 2: Data Visualization, Week 3: Machine Learning Basics..."
+      }
+    ]
+  }
+  
