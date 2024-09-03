@@ -6,15 +6,20 @@ import { useSelector } from 'react-redux';
 const StudentDashboard = () => {
   const studentId = useSelector((state) => state.student.studentId);
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const url = import.meta.env.VITE_DATABASE_URL;
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${url}/student/${studentId}`);
         setCourses(response.data.enrolledCourses);
-        console.log("courses: ", response.data.enrolledCourses);
+        // console.log("courses: ", response.data.enrolledCourses);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching courses:", error);
       }
     };
@@ -48,6 +53,14 @@ const StudentDashboard = () => {
       day: "numeric",
     });
   };
+
+  if(loading){
+    return (
+      <div className="text-center text-lg">
+        Loading...
+      </div>
+    )
+  }
 
   return (
     <div className="container mx-auto p-6">

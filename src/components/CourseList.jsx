@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 function CourseList() {
   const [courses, setCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const url = import.meta.env.VITE_DATABASE_URL;
   const fetchCourses = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${url}/findAll`);
       setCourses(response?.data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -26,6 +31,16 @@ function CourseList() {
       course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       course.instructorName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if(loading){
+    return (
+      <div className="text-center text-lg">
+        Loading...
+      </div>
+    )
+  }
+
+
 
   return (
     <div className="w-full flex flex-col items-center px-4 py-8">
