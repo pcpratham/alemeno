@@ -1,94 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function StudentDashboard() {
-  const [student, setStudent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const StudentDashboard = ({id}) => {
+  const studentId = id;
+  const [courses, setCourses] = useState([]);
+  const url = import.meta.env.VITE_DATABASE_URL;
 
   useEffect(() => {
-    
-    fetch('http://localhost:5000/students')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch student data');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setStudent(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, []);
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(`${url}/student/${studentId}`);
+        setCourses(response.data.enrolledCourses);
+        console.log("courses: ", response.data.enrolledCourses);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+    fetchCourses();
+  }, [studentId]);
+
+  const markAsCompleted = async (courseId) => {
+    try {
+      await axios.put(`${url}/students/${studentId}/courses/${courseId}/complete`);
+      
+      setCourses((prevCourses) =>
+        prevCourses.map((course) =>
+          course.courseId._id === courseId ? { ...course, completed: true } : course
+        )
+      );
+    } catch (error) {
+      console.error('Error marking course as completed:', error);
+    }
+  };
 
   return (
     <div>
-      <h1>{student.name}'s Dashboard</h1>
-      <h2>Enrolled Courses</h2>
+      <h1>My Courses</h1>
       <ul>
-        {student.enrolledCourses.map(enrolled => (
-          <CourseItem key={enrolled.courseId} enrolled={enrolled} />
+        {courses.map((course) => (
+          <li className='my-4' key={course.courseId._id}>
+            <div className='text-2xl text-green-600'>
+              {course.courseId.courseName}
+            </div>
+            <button 
+              onClick={() => markAsCompleted(course.courseId._id)} 
+              disabled={course.completed}
+            >
+              {course.completed ? 'Completed' : 'Mark as Completed'}
+            </button>
+          </li>
         ))}
       </ul>
     </div>
   );
-}
-
-function CourseItem({ enrolled }) {
-  const [course, setCourse] = useState(null);
-
-  useEffect(() => {
-    // Fetch course details
-    fetch(`http://localhost:5000/courses/${enrolled.courseId}`)
-      .then(response => response.json())
-      .then(data => setCourse(data));
-  }, [enrolled.courseId]);
-
-  const markAsCompleted = () => {
-    // Implement the logic to mark the course as completed in the backend
-    fetch(`http://localhost:5000/students`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        enrolledCourses: [
-          ...student.enrolledCourses.map(course => 
-            course.courseId === enrolled.courseId
-              ? { ...course, completed: true }
-              : course
-          )
-        ]
-      })
-    }).then(() => {
-      // Update the UI after marking as completed
-      setCourse(prev => ({ ...prev, completed: true }));
-    });
-  };
-
-  if (!course) return null;
-
-  return (
-    <li>
-      <div>
-        <img src={course.thumbnail} alt={course.title} width="100" />
-        <h3>{course.title}</h3>
-        <p>Instructor: {course.instructor}</p>
-        <p>Due Date: {course.dueDate}</p>
-        <div>
-          <label>Progress:</label>
-          <progress value={course.progress} max="100">{course.progress}%</progress>
-        </div>
-        <button onClick={markAsCompleted} disabled={enrolled.completed}>
-          {enrolled.completed ? 'Completed' : 'Mark as Completed'}
-        </button>
-      </div>
-    </li>
-  );
-}
+};
 
 export default StudentDashboard;
