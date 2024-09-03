@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CourseList() {
   const [courses, setCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
+  const url = import.meta.env.VITE_DATABASE_URL;
   const fetchCourses = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/courses");
+      const response = await axios.get(`${url}/findAll`);
       setCourses(response?.data);
+      // console.log('Courses:', response?.data);
     } catch (error) {
       console.log(error);
     }
@@ -19,8 +23,8 @@ function CourseList() {
   }, []); 
 
   const filteredCourses = courses.filter(course => 
-    course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(searchTerm.toLowerCase())
+    course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    course.instructorName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -39,8 +43,8 @@ function CourseList() {
     
       <div className="flex flex-wrap mx-auto gap-4 cursor-pointer justify-center my-4">
         {filteredCourses.map((course) => (
-          <div className="border-2 hover:scale-125 hover:z-40 hover:border-black hover:bg-orange-200 hover:text-white transition-all rounded-xl flex flex-col p-4 items-center justify-center w-[300px] text-yellow-400" key={course.id}>
-            <h2 className="text-yellow-700">{course.name}</h2>
+          <div className="border-2 hover:scale-125 hover:z-40 hover:border-black hover:bg-orange-200 hover:text-white transition-all rounded-xl flex flex-col p-4 items-center justify-center w-[300px] text-yellow-400" key={course._id}>
+            <h2 className="text-yellow-700"  onClick={() => {navigate(`/course/${course._id}`)}} >{course.courseName}</h2>
             <p>{course.description}</p>
           </div>
         ))}

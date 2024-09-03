@@ -1,4 +1,14 @@
 {
+    "students": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "enrolledCourses": [
+        { "courseId": 1, "completed": false },
+        { "courseId": 2, "completed": true }
+      ]
+    }
+  ],
     "courses": [
       {
         "id": 1,
