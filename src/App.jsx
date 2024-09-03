@@ -2,7 +2,7 @@ import CourseList from "./components/CourseList";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Course from "./pages/Course";
 import StudentDashboard from "./components/StudentDashboard";
-
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -10,7 +10,8 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/" element={<CourseList/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/courses" element={<CourseList/>} />
           <Route path="/course/:id" element={<Course/>} />
           <Route path="/student" element={<StudentDashboard/>} />
         </Routes>

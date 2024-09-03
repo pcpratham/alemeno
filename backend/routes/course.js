@@ -143,6 +143,7 @@ router.put('/students/:studentId/courses/:courseId/complete', async (req, res) =
     // Update the completed field to true if it was false
     if (!enrolledCourse.completed) {
       enrolledCourse.completed = true;
+      enrolledCourse.progress = 100;
     } else {
       return res.status(400).json({ message: 'Course already marked as completed' });
     }
