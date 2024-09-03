@@ -12,7 +12,6 @@ function CourseList() {
     try {
       const response = await axios.get(`${url}/findAll`);
       setCourses(response?.data);
-      // console.log('Courses:', response?.data);
     } catch (error) {
       console.log(error);
     }
@@ -20,34 +19,49 @@ function CourseList() {
 
   useEffect(() => {
     fetchCourses();
-  }, []); 
+  }, []);
 
-  const filteredCourses = courses.filter(course => 
-    course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.instructorName.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCourses = courses.filter(
+    (course) =>
+      course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.instructorName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        className="border-2 border-yellow-400 rounded-lg p-2 mx-auto my-4"
-        onChange={(e) => {
-            setSearchTerm(e.target.value);
-        }}
-      />
-      <button onClick={()=>console.log('Filtered courses:', filteredCourses)}>
-        Search courses
-      </button>
-    
-      <div className="flex flex-wrap mx-auto gap-4 cursor-pointer justify-center my-4">
-        {filteredCourses.map((course) => (
-          <div className="border-2 hover:scale-125 hover:z-40 hover:border-black hover:bg-orange-200 hover:text-white transition-all rounded-xl flex flex-col p-4 items-center justify-center w-[300px] text-yellow-400" key={course._id}>
-            <h2 className="text-yellow-700"  onClick={() => {navigate(`/course/${course._id}`)}} >{course.courseName}</h2>
-            <p>{course.description}</p>
+    <div className="w-full flex flex-col items-center px-4 py-8">
+      <div className="w-full max-w-md mb-6">
+        <input
+          type="text"
+          placeholder="Search for courses..."
+          className="w-full border-2 border-yellow-400 rounded-lg p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course) => (
+            <div
+              className="border-2 border-gray-300 hover:scale-105 hover:z-10 hover:bg-yellow-400 hover:text-white transition-all duration-300 rounded-lg p-4 flex flex-col items-center justify-center text-center cursor-pointer"
+              key={course._id}
+              onClick={() => navigate(`/course/${course._id}`)}
+            >
+              <h2 className="text-xl font-bold mb-2 text-yellow-700">
+                {course.courseName}
+              </h2>
+              <p>Instructor : {course.instructorName}</p>
+              <p className="text-sm text-gray-600">
+                {course.description.length > 100
+                  ? `${course.description.substring(0, 100)}...`
+                  : course.description}
+              </p>
+            </div>
+          ))
+        ) : (
+          <div className="flex justify-center items-center w-full ">
+            <p className="text-gray-500 text-center ">No courses found.</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
